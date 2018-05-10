@@ -17,7 +17,7 @@ public class Labyrinthe {
 	public Prefab Door;
 	
 	
-	public void CreateLabyrinthe(int largeur, int longueuer) {
+	public void CreateLabyrinthe(int largeur, int longueur) {
 
 	}
 	

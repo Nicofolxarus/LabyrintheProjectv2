@@ -6,7 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 	
-	public Main instance = new Main(); 
+	public Main Instance = new Main(); 
+	public Main BukkitInstance = this;
 	
 	@Override
 	public void onLoad() {
