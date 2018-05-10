@@ -9,7 +9,7 @@ public class Labyrinthe {
 	
 	
 	private int seed = -1;		//public set if not generated
-	private Random rand;		
+	private Random rand;
 	private boolean isGenerate; //public get
 	public Prefab wallprefab_north_sud;
 	public Prefab wallprefab_ouest_est;
