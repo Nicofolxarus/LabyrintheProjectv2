@@ -5,24 +5,20 @@ import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-public class Labyrinthe2 {
+public class Labyrinthe {
 	
-	public class WallPrefab{
-		int x;
-		int y;
-		int z;
-		int dx;
-		int dy;
-		int dz;
-	}
 	
 	private int seed = -1;		//public set if not generated
 	private Random rand;		
 	private boolean isGenerate; //public get
+	public Prefab wallprefab_north_sud;
+	public Prefab wallprefab_ouest_est;
+	public Prefab Sol;
+	public Prefab Door;
 	
 	
 	public void CreateLabyrinthe(int largeur, int longueuer) {
-		
+
 	}
 	
 	public void GenerateLabyrinthe(World world, Location position) {
