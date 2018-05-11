@@ -19,6 +19,7 @@ import org.bukkit.scheduler.BukkitTask;
 import fr.NS.Labyrinthev2.Generale.Main;
 
 public class Monde {
+	
 	private static BukkitTask teleportation;
 	private static boolean isFinishTpRegeneration = false;
 	private static int FinishTpRegeneration;
@@ -33,12 +34,12 @@ public class Monde {
 			//teleport
 			SyncTeleportation(new ArrayList<Player>(Bukkit.getOnlinePlayers()), ((World) Bukkit.getWorlds().toArray()[0]).getHighestBlockAt(0, 0).getLocation(),true);
 			
-			FinishTpRegeneration = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getBukkitInstance(), new Runnable() {
+			FinishTpRegeneration = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.BukkitInstance, new Runnable() {
 				@Override
 				public void run() {
 					if(isFinishTpRegeneration){
 						isFinishTpRegeneration = false;
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getBukkitInstance(), new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.BukkitInstance, new Runnable() {
 							@Override
 							public void run() {
 								regenerateWorld2(world);
@@ -55,7 +56,7 @@ public class Monde {
 		if(world != null){
 			deleteWorld(world.getName());
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getBukkitInstance(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.BukkitInstance, new Runnable() {
 			@Override
 			public void run() {
 				Bukkit.reload();
@@ -104,7 +105,7 @@ public class Monde {
 
 	public static void deleteWorld(String world) {
 		Bukkit.unloadWorld(world, true);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getBukkitInstance(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.BukkitInstance, new Runnable() {
 			@Override
 			public void run() {
 				deleteWorld(new File(world));
@@ -146,7 +147,7 @@ public class Monde {
 	}
 	
 	public static void SyncTeleportation(ArrayList<Player> list,Location l,boolean fini){
-		teleportation = Bukkit.getScheduler().runTaskTimer(Main.getBukkitInstance(), new Runnable() {
+		teleportation = Bukkit.getScheduler().runTaskTimer(Main.BukkitInstance, new Runnable() {
 			Integer current_player = 0;
 			Boolean finish = false;
 			Location loc = l;

@@ -12,6 +12,7 @@ import fr.NS.Tools.Actions.Action3;
 import fr.NS.Tools.Tuples.Tuple3;
 
 public class Prefab {
+	
 	private int x;
 	private int y;
 	private int z;
@@ -34,10 +35,12 @@ public class Prefab {
 				Tuple3<Integer, Material, Byte> tuple3 = new Tuple3<Integer, Material, Byte>(0, Material.AIR, (byte) 0);
 				int r = rand.nextInt(size);
 				for(int j = 0; j < map.size(); j++) {
-					if(r > map.get(j).getItem1() && r < map.get(j + 1).getItem1()) {
+					r -= map.get(j).getItem1();
+					if(r < 0) {
 						tuple3 = map.get(j);
 					}
 				}
+				//set Blocks
 				Block b = loc.getWorld().getBlockAt(loc);
 				b.setType(tuple3.getItem2());
 				b.setData(tuple3.getItem3());

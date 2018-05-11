@@ -24,22 +24,20 @@ public class OrePopulator extends BlockPopulator {
 
 		int[] iterations = new int[] { 10, 20, 20, 2, 8, 1, 1, 1 };
 		int[] amount = new int[] { 32, 16, 8, 8, 7, 7, 6 };
-		Material[] type = new Material[] { Material.GRAVEL, Material.COAL_ORE,
-				Material.IRON_ORE, Material.GOLD_ORE, Material.REDSTONE_ORE,
-				Material.DIAMOND_ORE, Material.LAPIS_ORE };
-		int[] maxHeight = new int[] { 128, 128, 128, 128, 128, 64, 32, 16, 16,
-				32 };
+		Material[] type = new Material[] { Material.GRAVEL, Material.COAL_ORE, Material.IRON_ORE, Material.GOLD_ORE,
+				Material.REDSTONE_ORE, Material.DIAMOND_ORE, Material.LAPIS_ORE };
+		int[] maxHeight = new int[] { 128, 128, 128, 128, 128, 64, 32, 16, 16, 32 };
 
 		for (int i = 0; i < type.length; i++) {
 			for (int j = 0; j < iterations[i]; j++) {
-				internal(world, random, source.getX() * 16 + random.nextInt(16), random.nextInt(maxHeight[i]), source.getZ()
-						* 16 + random.nextInt(16), amount[i], type[i]);
+				internal(world, random, source.getX() * 16 + random.nextInt(16), random.nextInt(maxHeight[i]),
+						source.getZ() * 16 + random.nextInt(16), amount[i], type[i]);
 			}
 		}
 	}
 
-	private static void internal(World world, Random random, int originX,
-		int originY, int originZ, int amount, Material type) {
+	private static void internal(World world, Random random, int originX, int originY, int originZ, int amount,
+			Material type) {
 		double angle = random.nextDouble() * Math.PI;
 		double x1 = ((originX + 8) + Math.sin(angle) * amount / 8);
 		double x2 = ((originX + 8) - Math.sin(angle) * amount / 8);
@@ -52,8 +50,7 @@ public class OrePopulator extends BlockPopulator {
 			double seedX = x1 + (x2 - x1) * i / amount;
 			double seedY = y1 + (y2 - y1) * i / amount;
 			double seedZ = z1 + (z2 - z1) * i / amount;
-			double size = ((Math.sin(i * Math.PI / amount) + 1)
-					* random.nextDouble() * amount / 16 + 1) / 2;
+			double size = ((Math.sin(i * Math.PI / amount) + 1) * random.nextDouble() * amount / 16 + 1) / 2;
 
 			int startX = (int) (seedX - size);
 			int startY = (int) (seedY - size);
@@ -77,8 +74,7 @@ public class OrePopulator extends BlockPopulator {
 								sizeZ *= sizeZ;
 
 								Block block = world.getBlockAt(x, y, z);
-								if (sizeX + sizeY + sizeZ < 1
-										&& block.getType() == Material.STONE) {
+								if (sizeX + sizeY + sizeZ < 1 && block.getType() == Material.STONE) {
 									block.setType(type);
 								}
 							}

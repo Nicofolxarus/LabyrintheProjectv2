@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 	
-	public Main Instance = new Main();
+	public static Main Instance = new Main();
 	public static Main BukkitInstance;
 	
 	@Override
@@ -26,9 +26,5 @@ public class Main extends JavaPlugin implements Listener {
 	public void onDisable() {
 		Bukkit.getConsoleSender().sendMessage("§6§m--=---------------------------=--§r §6Labyrinthe §6§m--=---------------------------=--");
 		Bukkit.getConsoleSender().sendMessage("§6§m--=---------------------------=--§r    §eEnd     §6§m--=---------------------------=--");
-	}
-	
-	public static Main getBukkitInstance(){
-		return BukkitInstance;
 	}
 }
