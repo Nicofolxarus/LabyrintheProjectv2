@@ -7,7 +7,7 @@ import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import fr.NS.Tools.Actions.Action;
+import fr.NS.Tools.Actions.Action0;
 
 public class LabyrintheGenerator {
 
@@ -22,7 +22,7 @@ public class LabyrintheGenerator {
 
 	private Thread MainThread;
 	private List<Thread> ThreadPool;
-	private Queue<Action> ReSyncTask;
+	private Queue<Action0> SyncTask;
 	
 	public void CreateLabyrinthe(int largeur, int longueur) {
 		
@@ -44,5 +44,9 @@ public class LabyrintheGenerator {
 
 	public boolean isGenerate() {
 		return isGenerate;
+	}
+
+	public Queue<Action0> getSyncTask() {
+		return SyncTask;
 	}
 }

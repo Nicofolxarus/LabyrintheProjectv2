@@ -4,8 +4,8 @@ import org.bukkit.Location;
 
 public class Case extends LabyrinthePart {
 
-	private boolean off;
-	private Location loc;
+	private boolean off = false;
+	public Location loc;
 
 	private int ID;
 	private int GeneratorID;
@@ -15,8 +15,10 @@ public class Case extends LabyrinthePart {
 	private Wall wall_est;
 	private Wall wall_ouest;
 	
-	public Case(Short x, Short y, Short z) {
+	public Case(Short x, Short y, Short z, Integer ID) {
 		super(x, y, z);
+		this.ID = ID;
+		this.GeneratorID = ID;
 	}
 
 	// delegated auto generated methodes
@@ -27,14 +29,6 @@ public class Case extends LabyrinthePart {
 
 	public void setOff(boolean off) {
 		this.off = off;
-	}
-
-	public Location getLoc() {
-		return loc;
-	}
-
-	public void setLoc(Location loc) {
-		this.loc = loc;
 	}
 	
 	public int getID() {
@@ -49,9 +43,13 @@ public class Case extends LabyrinthePart {
 		return GeneratorID;
 	}
 
-	public void setGeneratorID(int generatorID) {
+	public void setGeneratorID(Integer generatorID) {
 		LabyrintheChunkparent.RemoveID(GeneratorID);
 		LabyrintheChunkparent.AddID(generatorID);
+		GeneratorID = generatorID;
+	}
+	
+	public void setGeneratorIDnoUpdate(Integer generatorID) {
 		GeneratorID = generatorID;
 	}
 
