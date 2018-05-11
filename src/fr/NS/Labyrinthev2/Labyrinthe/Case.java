@@ -15,6 +15,8 @@ public class Case extends LabyrinthePart {
 	private Wall wall_est;
 	private Wall wall_ouest;
 	
+	
+	
 	public Case(Short x, Short y, Short z, Integer ID) {
 		super(x, y, z);
 		this.ID = ID;
