@@ -7,10 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin implements Listener {
 	
 	public Main Instance = new Main();
-	public Main BukkitInstance = this;
+	public static Main BukkitInstance;
 	
 	@Override
 	public void onLoad() {
+		BukkitInstance = this;
 		Bukkit.getConsoleSender().sendMessage("§6§m--=---------------------------=--§r §6Labyrinthe §6§m--=---------------------------=--");
 		Bukkit.getConsoleSender().sendMessage("§6§m--=---------------------------=--§r    §eLoad    §6§m--=---------------------------=--");
 	}
@@ -27,4 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getConsoleSender().sendMessage("§6§m--=---------------------------=--§r    §eEnd     §6§m--=---------------------------=--");
 	}
 	
+	public static Main getBukkitInstance(){
+		return BukkitInstance;
+	}
 }
