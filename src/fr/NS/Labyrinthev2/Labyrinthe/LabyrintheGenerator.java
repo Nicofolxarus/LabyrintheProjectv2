@@ -11,14 +11,14 @@ import fr.NS.Tools.Actions.Action0;
 
 public class LabyrintheGenerator {
 
-	private int seed = -1; // public set if not generated
+	private Integer seed = -1; // public set if not generated
 	private Random rand;
-	private boolean isGenerationStarted;
-	private boolean isGenerate; // public get
-	public Prefab wallprefab_north_sud;
-	public Prefab wallprefab_ouest_est;
-	public Prefab Sol;
-	public Prefab Door;
+	private Boolean isGenerationStarted;
+	private Boolean isGenerate; // public get
+	public BasiquePrefab wallprefab_north_sud;
+	public BasiquePrefab wallprefab_ouest_est;
+	public BasiquePrefab Sol;
+	public BasiquePrefab Door;
 
 	private Thread MainThread;
 	private List<Thread> ThreadPool;

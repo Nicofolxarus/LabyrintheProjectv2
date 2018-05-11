@@ -7,7 +7,7 @@ public class LabyrintheChunk extends LabyrinthePart {
 
 	private HashMap<Short, HashMap<Short, HashMap<Short, LabyrinthePart>>> chunkdata = new HashMap<Short, HashMap<Short, HashMap<Short, LabyrinthePart>>>();
 	// x, y, z -> data
-	private HashMap<Integer, Integer> sizes = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> nbIdbyChunks = new HashMap<Integer, Integer>();
 
 	public LabyrintheChunk(Short x, Short y, Short z, Short x_size, Short y_size, Short z_size) {
 		super(x, y, z);
@@ -47,21 +47,23 @@ public class LabyrintheChunk extends LabyrinthePart {
 		labyrinthepart.setLabyrintheChunkparent(this);
 
 		if (labyrinthepart instanceof LabyrintheChunk)
-			AddAllID(((LabyrintheChunk) labyrinthepart).sizes);
+			AddAllID(((LabyrintheChunk) labyrinthepart).nbIdbyChunks);
 
 		if (labyrinthepart instanceof Case)
 			AddID(((Case) labyrinthepart).getGeneratorID());
 	}
-
+	
+	//gestion des IDS
+	
 	public void AddID(Integer ID) {
 		AddID(ID, 1);
 	}
 
 	public void AddID(Integer ID, Integer nb) {
-		if (sizes.containsKey(ID))
-			sizes.put(ID, sizes.get(ID) + nb);
+		if (nbIdbyChunks.containsKey(ID))
+			nbIdbyChunks.put(ID, nbIdbyChunks.get(ID) + nb);
 		else
-			sizes.put(ID, nb);
+			nbIdbyChunks.put(ID, nb);
 
 		if (LabyrintheChunkparent != null)
 			LabyrintheChunkparent.AddID(ID, nb);
@@ -78,11 +80,11 @@ public class LabyrintheChunk extends LabyrinthePart {
 
 	public void RemoveID(Integer ID, Integer nb) {
 
-		if (sizes.containsKey(ID)) {
-			if (sizes.get(ID) > nb)
-				sizes.put(ID, sizes.get(ID) - nb);
+		if (nbIdbyChunks.containsKey(ID)) {
+			if (nbIdbyChunks.get(ID) > nb)
+				nbIdbyChunks.put(ID, nbIdbyChunks.get(ID) - nb);
 			else
-				sizes.remove(ID);
+				nbIdbyChunks.remove(ID);
 		}
 
 		if (LabyrintheChunkparent != null)
@@ -94,8 +96,8 @@ public class LabyrintheChunk extends LabyrinthePart {
 			RemoveID(e.getKey(), e.getValue());
 	}
 
-	public void ReplaceAllID(Integer oldID, Integer newID) {
-		if (sizes.containsKey(oldID)) {
+	public void ReplaceID(Integer oldID, Integer newID) {
+		if (nbIdbyChunks.containsKey(oldID)) {
 			for (HashMap<Short, HashMap<Short, LabyrinthePart>> layermaps : chunkdata.values()) {
 				for (HashMap<Short, LabyrinthePart> linemaps : layermaps.values()) {
 					for (LabyrinthePart lp : linemaps.values()) {
@@ -105,18 +107,18 @@ public class LabyrintheChunk extends LabyrinthePart {
 								clp.setGeneratorIDnoUpdate(newID);
 						}
 						if (lp instanceof LabyrintheChunk)
-							((LabyrintheChunk) lp).ReplaceAllID(oldID, newID);
+							((LabyrintheChunk) lp).ReplaceID(oldID, newID);
 					}
 				}
 			}
-			sizes.put(newID, sizes.get(oldID) + sizes.get(newID));
-			sizes.remove(oldID);	
+			nbIdbyChunks.put(newID, nbIdbyChunks.get(oldID) + nbIdbyChunks.get(newID));
+			nbIdbyChunks.remove(oldID);	
 		}
 	}
 
 	public int getnbID(Integer id) {
-		if (sizes.containsKey(id))
-			return sizes.get(id);
+		if (nbIdbyChunks.containsKey(id))
+			return nbIdbyChunks.get(id);
 		else
 			return 0;
 	}
